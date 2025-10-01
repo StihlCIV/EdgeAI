@@ -1,0 +1,10 @@
+# Python version: 3.11.9 respectively 3.12.9
+
+# This file includes only the relevant packages extracted from requirements_mac.txt
+# This file may also contain updates to package versions due to the usage of tf-model-optimization
+absl-py # == 2.1.0
+matplotlib # == 3.10.0
+numpy # == 2.0.2
+pandas # == 2.2.3
+tensorflow == 2.15.0 # 2.18.0
+ipykernel==6.29.5

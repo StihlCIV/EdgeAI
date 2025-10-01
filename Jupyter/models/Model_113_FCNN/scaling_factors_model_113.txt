@@ -1,0 +1,10 @@
+- Skalierungswerte basierend auf den Trainingsdaten: 
+  - PCB Temperatur: min: 13.26 max: 55.97 
+  - PCB Start Temperatur: min: 19.89 max: 49.59 
+  - Motor Current: min: 0.37859609 max: 111.37580806
+  - Motor Power: min: 2.96283184 max: 1620.28537393 
+  - Motor Speed: min: 349.572 max: 13202.07  
+  - Runtime: min: 4 max: 15000 
+  - Index: min: 4 max: 6305
+
+- Skalierungswerte der Motortemperatur basierend auf den Trainingsdaten: min: 19.6 max: 184.88
