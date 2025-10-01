@@ -1,0 +1,49 @@
+Definition:
+- Betriebsphase: Zeitraum, in dem die Drehzahl der Maschine größer als 0 ist
+
+Eingabevektor: 
+- 6 (Zeitschritte) x 7 (Inputwerte)
+- Dimension Matlab: 1 x 42
+
+Inputwerte:
+- PCB Temperatur: Aktueller Messwert zum gegebenen Zeitschritt
+- PCB Start Temperatur: PCB Temperatur zu Beginn einer Betriebsphase (der Wert bleibt während der gesamten Betriebsphase unverändert)
+- Motor Current: Aktueller Messwert zum gegebenen Zeitschritt
+- Motor Power: Aktueller Messwert zum gegebenen Zeitschritt
+- Motor Speed: Aktueller Messwert zum gegebenen Zeitschritt
+- Runtime:
+  - Startwert: 0 (Einmalige Initialisierung zu Beginn des Dateneinlesens – unter der Annahme, dass die Maschine zuvor längere Zeit nicht in Betrieb war)
+  - Minimalwert: 0
+  - Maximalwert: 15000
+  - Während einer Betriebsphase: Inkrementieren pro Zeitschritt
+  - Außerhalb einer Betriebsphase: Dekrementieren pro Zeitschritt
+- Index:
+  - Startwert pro Betriebsphase: 0
+  - Während einer Betriebsphase: Inkrementieren pro Zeitschritt
+
+Individuelle Skalierung der Komponenten des Eingabevektors vor Modellaufruf:  
+- Formel Skalierung: x_scaled = (x_original - min(x)) / (max(x) - min(x))
+  - x_scaled: Der skalierte Messwert des Inputs x
+  - x_original: Der originale Messwert des Inputs x 
+  - min(x): Der kleinstmögliche Wert des Inputs x
+  - max(x): Der größtmögliche Wert des Inputs x 
+- Skalierungswerte basierend auf den Trainingsdaten: 
+  - PCB Temperatur: min: 13.26 max: 55.97 
+  - PCB Start Temperatur: min: 19.89 max: 49.59 
+  - Motor Current: min: 0 max: 118.5243591 
+  - Motor Power: min: 0 max: 1804.59505335 
+  - Motor Speed: min: 0.85 max: 13553.95 
+  - Runtime: min: 0 max: 15000 
+  - Index: min: 0 max: 6305
+
+Modellverhalten:
+- Modell wird nur während einer Betriebsphase aufgerufen
+- Erste Berechnung erfolgt, sobald ein vollständiger Eingabevektor während der Betriebsphase eingelesen wurde
+
+Ausgabe: Motortemperatur (skaliert)
+- Formel Reskalierung: y_original = y_scaled * (max(y) - min(y)) + min(y)
+  - y_original: Der originale/reskalierte Temperaturwert
+  - y_scaled: Der skalierte Temperaturwert
+  - min(y): Der kleinstmögliche Temperaturwert
+  - max(y): Der größtmögliche Temperaturwert
+- Skalierungswerte der Motortemperatur basierend auf den Trainingsdaten: min: 19.6 max: 184.88
